@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class game {
@@ -7,6 +8,10 @@ public class game {
        int sizeBoard = 5;
        personX = 1 + sizeBoard / 2;
        personY = 1 + sizeBoard / 2;
+       String castle = "\\uD83C\\uDFF0";
+       int castleY = 1;
+       Random random = new Random();
+       int castleX = 1 + random.nextInt(sizeBoard);
         step += 1;
         String person = "@";
         String monster = "*";
@@ -25,13 +30,17 @@ public class game {
         System.out.println("Начинаем?");
         Scanner sc2 = new Scanner(System.in);
         String answer = sc2.nextLine();
-        if (answer.equals("Да")) {
-            System.out.println("Класс");
-        } else  if (answer.equals("Нет")) {
-            System.out.println("Нет?");
-            System.out.println("Ну, в следующий раз");
-        } else {
-            System.out.println("Я так не понимаю (");
+        switch (answer) {
+            case "ДА":
+                System.out.println("Выбери уровень сложности(От 1 до 5):");
+                int difficultGame = sc2.nextInt();
+                System.out.println("Выбранная сложность:\t"+ difficultGame);
+                break;
+            case "НЕТ":
+                System.out.println("Жаль, приходи ещё!");
+                break;
+            default:
+                System.out.println("Данные введены некорректно");
         }
         System.out.println("Ну мы начнём");
         System.out.println("Количество жизней " + personLive);
@@ -39,13 +48,27 @@ public class game {
         System.out.println("Координаты персонажа - (x: " + personX + ", y: " + personY + "))");
         int x = sc2.nextInt();
         int y = sc2.nextInt();
-        if (x !=personX) {
-            if (y != personY) {
-                System.out.println("Некорректный ход");
-            }
+
+        if (x != personX && y != personY) {
+            System.out.println("Некорректный ход");
+        } else if (Math.abs(x - personX) == 1 || Math.abs(y - personY) == 1) {
+            personX = x;
+            personY = y;
+            step += 1;
+            System.out.println("Ход корректный; Новые координаты: " +
+                    personX + ", " + personY + "\nХод номер: " + step);
+        } else {
+            System.out.println("Координаты не изменены");
+         while(true) {
+             if (personLive <= 0) {
+                 break;
+             }
+         }
+         System.out.println("Закончились жизни")
         }
 
+
         }
 
 
-    }
+

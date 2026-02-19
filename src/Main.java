@@ -13,28 +13,13 @@ public class Main {
         System.out.println("Имя?");
         String name = sc.nextLine();
         System.out.println("Hello " + name);
-        System.out.println("Какое сегодня число?");
-        Scanner sc1 = new Scanner(System.in);
-        int date = sc1.nextInt();
-        System.out.print("Много...");
 
-        String person = "hero";
-        String monster = "monst";
-        String gamingField = " + - + - + - +\n"
-                + "|   |   |   | \n"
-                + " + - + - + - +\n"
-                + "|   | " + monster + " |   |\n"
-                + " + - + - + - +\n"
-                + "|   " + person + " |   |   |\n"
-                + " + - + - + - +";
-        System.out.println(gamingField);
-        String begin = "|   | |";
-        String end = "|   |";
-        System.out.println(begin + monster + end);
-        System.out.println("");
 
+        //for(int i = 5; i >0; i--){
+         //   System.out.println(i);
+        }
 
 
 
     }
-}
+

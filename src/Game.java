@@ -4,16 +4,13 @@ import java.util.Scanner;
 public class Game {
     public static void main(String[] args) {
 
-        String person = "\uD83E\uDDD9\u200D";
-        int step = 0, personX, personY;
+        int step = 0;
         step += 1;
-        int personLive = 3;
 
         String monster = "\uD83E\uDDDF\u200D";
         String castle = "\uD83C\uDFF0";
         int sizeBoard = 5;
-        personX = 1 + sizeBoard / 2;
-        personY = 1 + sizeBoard / 2;
+        Person person = new Person(sizeBoard);
 
         String leftblock = " | ";
         String rightBlock = " |";
@@ -60,7 +57,7 @@ public class Game {
                 int maxStep = 2;
 
                 while (true) {
-                    board[personY - 1][personX - 1] = person;
+                    board[person.getY() - 1][person.getX() - 1] = person;
 
 
                     for (int y = 0; y < sizeBoard; y++) {
@@ -73,59 +70,50 @@ public class Game {
                     System.out.println(wall);
 
 
-                    System.out.println("Количество жизней " + personLive);
+                    System.out.println("Количество жизней " + person.downLive());
                     System.out.println("Введите куда будет ходить персонаж(ход возможен только по вертикали и горизонтали на одну клетку;");
-                    System.out.println("Координаты персонажа - (x: " + personX + ", y: " + personY + ")");
+                    System.out.println("Координаты персонажа - (x: " + person.getX() + ", y: " + person.getY() + ")");
 
                     int x = sc2.nextInt();
                     int y = sc2.nextInt();
                     System.out.println(x + "," + y);
 
-                    if (x != personX && y != personY) {
+                    if (x != person.getX() && y != person.getY()) {
                         System.out.println("Некорректный ход");
 
-                    } else if (Math.abs(x - personX) == 1 || Math.abs(y - personY) == 1) {
-                        if (board[y - 1][x - 1].equals("  ")) {
-                            board[personY - 1][personX - 1] = " ";
-                            personX = x;
-                            personY = y;
+                    } else if (person.isMoveCorrect(x, y)) {
+                        String next = board[y - 1][x - 1];
+                        if (next.equals("  ")) {
+                            board[person.getY() - 1][person.getX() - 1] = " ";
+                            person.move(x, y);
                             step++;
                             System.out.println("Ход корректный; Новые координаты: " +
-                                    personX + ", " + personY + "\nХод номер: " + step);
-                        } else if (board[y - 1][x - 1].equals(castle)) {
+                                    person.getX() + ", " + person.getY() + "\nХод номер: " + step);
+                        } else if (next.equals(castle)) {
                             System.out.println("Вы прошли игру");
                             break;
                         } else {
                             System.out.println("Решите задачу");
                             int key = random.nextInt(2);
                             if (taskMonster(0)) {
-                                board[personY - 1][personX - 1] = " ";
-                                personX = x;
-                                personY = y;
+                                board[person.getY() - 1][person.getX() - 1] = " ";
+                                person.getX() = x;
+                                person.getY() = y;
                             } else {
-                                personLive--;
+                                person.downLive()--;
+
+                                //second chance
                             }
 
                         }
                     } else {
                         System.out.println("Координаты не изменены");
                     }
-                    while (true) {
-                        if (personLive == 0) { /* второй шанс */ }
-                        int key = random.nextInt(2);
-                        if (taskMonster(0)) {
-                            board[personY - 1][personX - 1] = " ";
-                            personX = x;
-                            personY = y;
-                        }else {
-                            personLive--;
-                        }
 
-                        if (personLive < 0) {
-                            break;
-                        }
+                    if (person.downLive() <= 0) {
+                        System.out.println("Закончились жизни");
+                        break;
                     }
-                    System.out.println("Закончились жизни");
 
 
                 }
@@ -156,7 +144,7 @@ public class Game {
             return false;
 
         } else {
-                return  true;
+            return true;
         }
 
     }

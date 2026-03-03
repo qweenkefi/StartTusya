@@ -57,7 +57,7 @@ public class Game {
                 int maxStep = 2;
 
                 while (true) {
-                    board[person.getY() - 1][person.getX() - 1] = person;
+                    board[person.getY()][person.getX()] = person;
 
 
                     for (int y = 0; y < sizeBoard; y++) {

@@ -57,7 +57,7 @@ public class Game {
                 int maxStep = 2;
 
                 while (true) {
-                    board[person.getY()][person.getX()] = person;
+                    board[person.getY()][person.getX()] = person.getImage();
 
 
                     for (int y = 0; y < sizeBoard; y++) {
@@ -70,7 +70,7 @@ public class Game {
                     System.out.println(wall);
 
 
-                    System.out.println("Количество жизней " + person.downLive());
+                    System.out.println("Количество жизней " + person.getLive());
                     System.out.println("Введите куда будет ходить персонаж(ход возможен только по вертикали и горизонтали на одну клетку;");
                     System.out.println("Координаты персонажа - (x: " + person.getX() + ", y: " + person.getY() + ")");
 
@@ -97,7 +97,7 @@ public class Game {
                             int key = random.nextInt(2);
                             if (taskMonster(0)) {
                                 board[person.getY() - 1][person.getX() - 1] = " ";
-                                person.getX() = x;
+                                person.setX(x);
                                 person.getY() = y;
                             } else {
                                 person.downLive()--;

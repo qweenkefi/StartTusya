@@ -27,7 +27,7 @@ public class Monster {
         return perY - 1 == this.y && perX - 1 == this.x;
     }
 
-    public boolean taskMonster(int key) {
+    public boolean taskMonster(int difficultGame) {
 
         Random r = new Random();
         int x = r.nextInt(400);

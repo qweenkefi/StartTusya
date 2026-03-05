@@ -128,27 +128,6 @@ public class Game {
         }
     }
 
-    static boolean taskMonster(int key) {
-        if (key == 1) {
-            Random r = new Random();
-            int x = r.nextInt(400);
-            int y = r.nextInt(400);
-            int trueAnswer = x + y;
-            System.out.println("Реши пример: " + x + " + " + y + " = ?");
-            Scanner sc = new Scanner(System.in);
-            int ans = sc.nextInt();
-            if (trueAnswer == ans) {
-                System.out.println("Верно! Ты победил монстра");
-                return true;
-            }
-            System.out.println("Ты проиграл эту битву!");
-            return false;
-
-        } else {
-            return true;
-        }
-
-    }
 
     static void outputBoard(String[][] board, int live) {
         String leftBlock = "| ";

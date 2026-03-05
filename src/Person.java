@@ -3,7 +3,7 @@ import java.util.Random;
 public class Person {
 
     private int x, y;
-    private String image = "\\uD83E\\uDDD9\\u200D";
+    private String image = "\uD83E\uDDD9\u200D";
     private int live = 3;
 
     public int getX(){
@@ -20,6 +20,16 @@ public class Person {
 
     public String getImage(){
         return image;
+    }
+
+    public void setX(int x){
+        this.x = x;
+    }
+    public void setY(int y){
+        this.y = y;
+    }
+    public void setLive(int live){
+        this.live = live;
     }
 
     public void setImage(String image){

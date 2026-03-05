@@ -3,8 +3,30 @@ import java.util.Scanner;
 
 public class Monster {
     private String image = "\uD83E\uDDDF\u200D";
+    private final int x,y;
+    Random r = new Random();
 
-    static boolean taskMonster(int key) {
+    Monster(int sizeBoard) {
+        this.y = r.nextInt(sizeBoard - 1);
+        this.x = r.nextInt(sizeBoard);
+    }
+    public String getImage() {
+        return image;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public boolean conflictPerson(int perX, int perY){
+        return perY - 1 == this.y && perX - 1 == this.x;
+    }
+
+    public boolean taskMonster(int key) {
         if (key == 1) {
             Random r = new Random();
             int x = r.nextInt(400);

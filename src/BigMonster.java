@@ -2,14 +2,20 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class BigMonster extends Monster {
-    private String image = "\uD83D\uDC79";
+    private String image = "Dd";
 
-BigMonster(int sizeBoard) {
-    super(sizeBoard);
-}
+    BigMonster(int sizeBoard) {
+        super(sizeBoard);
+    }
+
+    @Override
+    public String getImage() {
+        return image;
+    }
+
     @Override
     public boolean taskMonster(int difficultGame) {
-    Random r = new Random();
+        Random r = new Random();
         System.out.println("Решите задачу:");
         if (difficultGame == 1) {
             return taskMonster();

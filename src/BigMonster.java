@@ -2,7 +2,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class BigMonster extends Monster {
-    private String image = "Dd";
+    private String image = "рр";
 
     BigMonster(int sizeBoard) {
         super(sizeBoard);

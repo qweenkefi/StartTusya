@@ -26,11 +26,11 @@ public class Game {
         int count = 0;
         Monster test;
         while (count <= count_monster){
-            if (random.nextBoolean()) {
+            if (random.nextInt(2)==0) {
                 test = new Monster(sizeBoard);
-            }else {
+            }else if (random.nextInt(2)==1){
                 test = new BigMonster(sizeBoard);
-            }
+            } else test = new Monmonster(sizeBoard);
             if (board[test.getY()][test.getX()].equals("  ")){
                 board[test.getY()][test.getX()] = test.getImage();
                 arrMonster[count] = test;
@@ -57,6 +57,14 @@ public class Game {
             case "ДА", "Да", "да":
                 System.out.println("Выбери уровень сложности(От 1 до 5):");
                 int difficultGame = sc2.nextInt();
+                if (difficultGame < 1) {
+                    difficultGame = 1;
+                    System.out.println("Легче единицы некуда)))");
+                }
+                if (difficultGame > 5){
+                    difficultGame = 5;
+                    System.out.println("Слишком сложно)))");
+                }
                 System.out.println("Выбранная сложность:\t" + difficultGame);
 
                 int maxStep = 2;
@@ -102,7 +110,7 @@ public class Game {
                                     break;
                                 }
 
-                                //second chance
+
                             }
 
                         }
